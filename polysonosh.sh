@@ -25,7 +25,6 @@ case $1 in
             echo "loading $2..."
             LINE=`grep "^$2" "$OURCONF"`
             HOUSEHOLDID=$(echo $LINE | cut -f2 -d' ')
-            echo $HOUSEHOLDID
             REGISTEREDCUSTOMERID=$(echo $LINE | cut -f3 -d' ')
             sed -iE "s/HouseholdID: .*/HouseholdID: \[$HOUSEHOLDID\]/" "$SONOSCONF"
             sed -iE "s/RegisteredCustomerID: .*/RegisteredCustomerID: \[$REGISTEREDCUSTOMERID\]/" "$SONOSCONF"
