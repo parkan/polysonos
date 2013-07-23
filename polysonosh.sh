@@ -29,6 +29,7 @@ case $1 in
             REGISTEREDCUSTOMERID=$(echo $LINE | cut -f3 -d' ')
             sed -iE "s/HouseholdID: .*/HouseholdID: \[$HOUSEHOLDID\]/" "$SONOSCONF"
             sed -iE "s/RegisteredCustomerID: .*/RegisteredCustomerID: \[$REGISTEREDCUSTOMERID\]/" "$SONOSCONF"
+            sleep 2
             open -a Sonos
         fi
         ;;
