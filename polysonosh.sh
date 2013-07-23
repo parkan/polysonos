@@ -23,11 +23,13 @@ case $1 in
             exit
         else
             echo "loading $2..."
+            osascript -e "tell application \"Sonos\" to quit"
             LINE=`grep "^$2" "$OURCONF"`
             HOUSEHOLDID=$(echo $LINE | cut -f2 -d' ')
             REGISTEREDCUSTOMERID=$(echo $LINE | cut -f3 -d' ')
             sed -iE "s/HouseholdID: .*/HouseholdID: \[$HOUSEHOLDID\]/" "$SONOSCONF"
             sed -iE "s/RegisteredCustomerID: .*/RegisteredCustomerID: \[$REGISTEREDCUSTOMERID\]/" "$SONOSCONF"
+            open -a Sonos
         fi
         ;;
     *)
